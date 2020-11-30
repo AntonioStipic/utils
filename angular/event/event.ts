@@ -12,6 +12,11 @@ export class Event implements OnDestroy {
         this.events = {};
     }
 
+    /**
+     * Publish and event to the given listeners
+     * @param event - The event to publish to
+     * @param data - The data to send
+     */
     publish(event: string, data: { [key: string]: any } | any = {}): void {
         if (!(event in this.events)) {
             this.createEvent(event);
@@ -20,6 +25,11 @@ export class Event implements OnDestroy {
         this.events[event].next(data);
     }
 
+    /**
+     * Listener to an event. Events with this name will trigger the provided callback
+     * @param event - The event to listen for
+     * @param callback - The event callback
+     */
     listen(event: string, callback: (data) => void): void {
         if (!(event in this.events)) {
             this.createEvent(event);
@@ -28,7 +38,7 @@ export class Event implements OnDestroy {
         this.events[event].subscribe(callback);
     }
 
-    createEvent(event: string): void {
+    private createEvent(event: string): void {
         this.events[event] = new ReplaySubject<any>(null);
     }
 
