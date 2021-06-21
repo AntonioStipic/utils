@@ -1,4 +1,4 @@
-import { CHARACTERS } from '../consts/characters.const';
+export const CHARACTERS = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz';
 
 export const random = {
     aToB: (a = 0, b = 1): number => {
